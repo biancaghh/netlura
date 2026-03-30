@@ -1,0 +1,575 @@
+/* ═════════════════════════════════════════════════════════════════
+   RESET GLOBAL E VARIÁVEIS CSS
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Remove espaçamentos padrão do navegador em todos os elementos */
+* {
+    margin: 0;
+    /* Sem margem padrão */
+    padding: 0;
+    /* Sem preenchimento padrão */
+    box-sizing: border-box;
+    /* Inclui border/padding no tamanho total */
+}
+
+/* Define variáveis CSS reutilizáveis para cores e transições */
+:root {
+    /* Cores do Netflix */
+    --netflix-red: #DB202C;
+    /* Vermelho vibrante */
+    --netflix-black: #141414;
+    /* Preto principal */
+    --netflix-dark: #0f0f0f;
+    /* Preto mais escuro */
+    --netflix-gray: #221f1f;
+    /* Cinza escuro */
+    --netflix-light: #f2f2f2;
+    /* Branco/cinza claro */
+
+    /* Transições suaves */
+    --transition: all 0.3s ease;
+}
+
+/* ===== DARK MODE (Padrão) ===== */
+body.dark-mode {
+    background: linear-gradient(135deg, var(--netflix-dark) 0%, var(--netflix-black) 100%);
+    color: var(--netflix-light);
+}
+
+/* ===== LIGHT MODE ===== */
+body.light-mode {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    color: #333333;
+}
+
+/* Ajustes específicos para light mode */
+body.light-mode h1 {
+    color: #333333;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode h1::after {
+    background: var(--netflix-red);
+}
+
+body.light-mode figcaption {
+    color: #333333;
+}
+
+body.light-mode .profile a:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ═════════════════════════════════════════════════════════════════
+   ESTILOS GLOBAIS
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Comportamento suave na navegação */
+html {
+    scroll-behavior: smooth;
+    /* Scroll suave ao clicar em âncoras */
+}
+
+body {
+    font-family: 'Iosevka Charon', sans-serif;
+    background: linear-gradient(135deg, var(--netflix-dark) 0%, var(--netflix-black) 100%);
+    color: var(--netflix-light);
+    min-height: 100vh;
+    /* Altura mínima = altura da tela */
+    overflow-x: hidden;
+    /* Sem scroll horizontal */
+}
+
+
+/* ═════════════════════════════════════════════════════════════════
+   CONTAINER PRINCIPAL
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Organiza todo conteúdo no centro da tela */
+main {
+    display: flex;
+    flex-direction: column;
+    /* Empilha elementos verticalmente */
+    justify-content: center;
+    /* Centraliza verticalmente */
+    align-items: center;
+    /* Centraliza horizontalmente */
+    min-height: 100vh;
+    /* Preenche toda a altura da tela */
+    padding: clamp(1rem, 5vw, 2rem);
+    /* Espaço interno responsivo */
+    padding-top: clamp(4vh, 8vh, 6vh); /* Espaço extra no topo para o botão de tema */
+}
+
+
+
+/* ═════════════════════════════════════════════════════════════════
+   CABEÇALHO E TÍTULO
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Estilo do cabeçalho */
+header {
+    text-align: center;
+    /* Texto centralizado */
+    margin-bottom: 4rem;
+    /* Espaço embaixo */
+    animation: fadeInDown 0.8s ease;
+    /* Animação de entrada */
+}
+
+/* Título principal com efeitos */
+h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    /* Texto mais pesado/grosso */
+    letter-spacing: 1.3px;
+    /* Espaço entre letras */
+    color: var(--netflix-light);
+    /* Cor branca/clara */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* Sombra do texto */
+    margin-bottom: 1.5rem; /* aumenta espaçamento para espaçar da linha decorativa */
+}
+
+.profiles {
+    margin-top: 2.4rem; /* maior distância a partir do header para evitar itens colados */
+}
+
+/* Linha decorativa vermelha embaixo do título */
+h1::after {
+    content: '';
+    /* Cria um pseudo-elemento */
+    display: block;
+    /* Como um bloco (nova linha) */
+    width: 120px;
+    /* Largura da linha */
+    height: 4px;
+    /* Espessura da linha */
+    background: var(--netflix-red);
+    /* Cor vermelha do Netflix */
+    margin: 0rem auto 0;
+    /* Espaço acima reduzido para ficar mais próximo do título */
+    border-radius: 2px;
+    /* Cantos levemente arredondados */
+}
+
+/* Botão de toggle dark/light mode */
+#theme-toggle {
+    background: var(--netflix-red);
+    color: white;
+    border: none;
+    padding: clamp(0.4rem, 2vw, 0.5rem) clamp(0.8rem, 3vw, 1rem);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    font-weight: 600;
+    transition: var(--transition);
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#theme-toggle:hover {
+    background: #b20710;
+    transform: scale(1.05);
+}
+
+#theme-toggle:focus {
+    outline: none;          /* Remove a borda de foco padrão */
+    box-shadow: none;       /* Remove sombras extras no foco */
+}
+
+#theme-toggle:active {
+    transform: scale(0.95);
+}
+
+
+
+/* ═════════════════════════════════════════════════════════════════
+   GRID DE PERFIS
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Contenedor com layout em grid responsivo */
+.profiles {
+    grid-template-columns: repeat(2, 1fr); /* força 2 colunas no mobile */
+    gap: 1.8rem;
+    margin-top: 1rem;
+}
+
+/* Lista interna de perfis usando grid para responsividade */
+.profiles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(90px, 15vw, 130px), 1fr));
+    gap: clamp(0.8rem, 3vw, 1rem);
+    width: 100%;
+    max-width: min(90vw, 720px); /* limite responsivo */
+    margin: 0 auto;
+}
+
+/* Remove marcadores das listas pai e filho */
+.profiles-wrapper,
+.profiles-list,
+.profiles-wrapper li,
+.profiles-list li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* ═════════════════════════════════════════════════════════════════
+   CARTÃO DE PERFIL (PROFILE CARD)
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Estilo base do item da lista de perfis */
+.profile {
+    list-style: none;
+    /* Remove ponto de lista */
+    width: clamp(90px, 20vw, 130px);
+    max-width: 130px;
+    margin: 0 auto;
+}
+
+/* Link do perfil com interatividade */
+.profile a {
+    display: block;
+    /* Ocupa todo espaço disponível */
+    text-decoration: none;
+    /* Remove sublinhado */
+    transition: var(--transition);
+    /* Transição suave */
+    border-radius: 8px;
+    /* Cantos arredondados */
+    overflow: hidden;
+    /* Esconde conteúdo que ultrapassa */
+    position: relative;
+    /* Para posicionar filhos */
+    
+}
+
+/* Efeito ao passar o mouse no perfil */
+.profile a:hover {
+    transform: none;
+    /* Remove zoom */
+    box-shadow: none;
+    /* Remove sombra */
+}
+
+/* Efeito ao clicar no perfil */
+.profile a:active {
+    transform: none;
+    /* Sem animação de clique */
+}
+
+
+
+
+/* ═════════════════════════════════════════════════════════════════
+   IMAGEM DO PERFIL
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Contenedor semântico para agrupar imagem e legenda */
+figure {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Imagem do perfil com proporção quadrada */
+img {
+    width: 100%;
+    /* Ocupa 100% da largura */
+    height: 100%;
+    /* Ocupa 100% da altura */
+    object-fit: cover;
+    /* Preenche sem distorcer */
+    aspect-ratio: 1;
+    /* Força formato quadrado (1:1) */
+    transition: var(--transition);
+    /* Transição suave */
+    display: block;
+    /* Remove espaços em branco */
+    border-radius: 8px;
+    /* Cantos arredondados */
+}
+
+/* Efeito na imagem ao passar o mouse */
+.profile a:hover img {
+    filter: brightness(1.2) contrast(1.1);
+    /* Aumenta brilho e contraste */
+    transform: scale(1.08);
+    /* Zoom na imagem */
+}
+
+
+
+/* ═════════════════════════════════════════════════════════════════
+   LEGENDA DO PERFIL (NOME)
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Nome do perfil embaixo da imagem */
+figcaption {
+    margin-top: clamp(0.5rem, 2vh, 0.75rem);
+    /* Espaço controlado abaixo do box */
+    padding: 0;
+    color: var(--netflix-light);
+    /* Cor do texto */
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    /* Tamanho ajustado responsivo */
+    font-weight: 600;
+    /* Texto mais pesado */
+    text-align: center;
+    /* Centralizado */
+    background: transparent;
+    border: none;
+    text-shadow: none;
+    display: block;
+}
+
+/* Efeito no nome ao passar o mouse */
+.profile a:hover figcaption {
+    transform: translateY(-0.5px);
+    /* Move para cima levemente */
+}
+
+
+/* ═════════════════════════════════════════════════════════════════
+   ANIMAÇÕES
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Animação de entrada: fade in com movimento para cima */
+@keyframes fadeInDown {
+
+    /* Começo: invisível e posicionado para cima */
+    from {
+        opacity: 0;
+        /* Totalmente transparente */
+        transform: translateY(-30px);
+        /* 30px acima da posição final */
+    }
+
+    /* Fim: visível e na posição correta */
+    to {
+        opacity: 1;
+        /* Totalmente visível */
+        transform: translateY(0);
+        /* Volta à posição original */
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   BOTÃO DE TEMA (DARK/LIGHT MODE)
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Botão de alternância de tema posicionado no canto superior direito */
+#theme-toggle {
+    position: fixed;           /* Posicionamento fixo na tela */
+    top: 20px;                 /* 20px do topo */
+    right: 20px;               /* 20px da direita */
+    background: var(--theme-button-bg, var(--netflix-red)); /* Fundo baseado no tema */
+    color: var(--theme-button-color, white); /* Texto baseado no tema */
+    border: none;              /* Sem borda */
+    padding: 10px 15px;        /* Espaçamento interno */
+    border-radius: 8px;        /* Cantos arredondados */
+    cursor: pointer;           /* Cursor de mão ao passar */
+    font-size: 14px;           /* Tamanho da fonte */
+    font-weight: 600;          /* Peso da fonte */
+    transition: var(--transition); /* Transição suave */
+    z-index: 1000;             /* Fica acima de outros elementos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+}
+
+/* Efeito ao passar o mouse no botão */
+#theme-toggle:hover {
+    background: var(--netflix-black); /* Fundo preto ao hover */
+    transform: scale(1.05);           /* Leve aumento */
+}
+
+/* Efeito ao clicar no botão */
+#theme-toggle:active {
+    transform: scale(0.95); /* Leve diminuição */
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   MODOS DE TEMA (DARK/LIGHT)
+   ═════════════════════════════════════════════════════════════════ */
+
+/* Modo claro (light-mode) */
+.light-mode {
+    --netflix-red: #e50914;        /* Vermelho mantém */
+    --netflix-black: #ffffff;      /* Branco para fundo */
+    --netflix-dark: #f8f8f8;       /* Cinza muito claro */
+    --netflix-gray: #e0e0e0;       /* Cinza claro */
+    --netflix-light: #333333;      /* Texto escuro */
+    --theme-button-bg: var(--netflix-dark); /* Botão no background do modo light */
+    --theme-button-color: var(--netflix-light);
+    --transition: all 0.3s ease;
+}
+
+.light-mode body {
+    background: linear-gradient(135deg, var(--netflix-dark) 0%, var(--netflix-black) 100%);
+    color: var(--netflix-light);
+}
+
+.light-mode h1 {
+    color: var(--netflix-light);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode figcaption {
+    color: var(--netflix-light);
+}
+
+.light-mode .profile a:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Modo escuro (dark-mode) - padrão */
+.dark-mode {
+    --netflix-red: #e50914;
+    --netflix-black: #141414;
+    --netflix-dark: #0f0f0f;
+    --netflix-gray: #221f1f;
+    --netflix-light: #f2f2f2;
+    --theme-button-bg: var(--netflix-dark); /* Botão no fundo do dark mode */
+    --theme-button-color: var(--netflix-light); /* Texto claro */
+    --transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVIDADE AVANÇADA ===== */
+
+/* Telas muito grandes (1600px+): otimização para ultrawide */
+@media (min-width: 1600px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    .profiles-list {
+        max-width: 1400px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2.5rem;
+    }
+
+    h1 {
+        font-size: clamp(3.5rem, 5vw, 4rem);
+    }
+}
+
+/* Grandes desktops (1200px+): mais espaço e cards maiores */
+@media (min-width: 1200px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .profiles-list {
+        max-width: 1200px;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .profile a {
+        border-radius: 12px;
+    }
+}
+
+/* Laptops grandes e desktops médios (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .profiles-list {
+        max-width: 960px;
+        gap: 1.8rem;
+    }
+}
+
+/* Tablets grandes (769px - 991px) */
+@media (min-width: 769px) and (max-width: 991px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .profiles-list {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        max-width: 780px;
+        gap: 1.5rem;
+    }
+}
+
+/* Tablet e celular médio (até 768px): ajusta título e espaçamento */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .profiles-list {
+        margin-top: 1.8rem;
+        gap: 1.3rem;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
+
+/* Celulares pequenos (até 360px): fonte e tamanho reduzidos */
+@media (max-width: 360px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.45rem;
+        letter-spacing: 0.8px;
+    }
+
+    .profiles-list {
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    #theme-toggle {
+        top: 10px;              /* Mais próximo do topo em telas pequenas */
+        right: 10px;            /* Mais próximo da direita */
+        padding: 8px 12px;      /* Padding menor */
+        font-size: 12px;        /* Fonte menor */
+    }
+}
+
+/* Dispositivos muito pequenos (até 320px): ajustes extremos */
+@media (max-width: 320px) {
+    body {
+        font-size: 13px;
+    }
+
+    main {
+        padding: 0.5rem;
+        padding-top: 3vh;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .profiles-list {
+        gap: 0.8rem;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    figcaption {
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    #theme-toggle {
+        top: 5px;
+        right: 5px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}
